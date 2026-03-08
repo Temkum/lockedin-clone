@@ -11,14 +11,16 @@ export interface AISuggestionChunk {
   isDone: boolean;
 }
 
-export enum WsEvent {
-  AUDIO_CHUNK = 'audio_chunk',
-  TRANSCRIPT = 'transcript',
-  AI_SUGGESTION = 'ai_suggestion',
-  SESSION_START = 'session_start',
-  SESSION_END = 'session_end',
-  ERROR = 'ws_error',
-}
+export const WsEvent = {
+  AUDIO_CHUNK: 'audio_chunk',
+  TRANSCRIPT: 'transcript',
+  AI_SUGGESTION: 'ai_suggestion',
+  SESSION_START: 'session_start',
+  SESSION_END: 'session_end',
+  ERROR: 'ws_error',
+} as const;
+
+export type WsEvent = (typeof WsEvent)[keyof typeof WsEvent];
 
 export interface Session {
   sessionId: string;
