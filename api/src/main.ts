@@ -5,7 +5,6 @@ import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
 
   // Security
   app.use(helmet());
@@ -27,9 +26,12 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
 
-  const port = process.env.PORT || 3001;
+  const port = process.env.PORT ?? 3000;
   await app.listen(port);
   console.log(`API running on http://localhost:${port}`);
 }
 
-bootstrap();
+bootstrap().catch((err) => {
+  console.error('Failed to start application:', err);
+  process.exit(1);
+});

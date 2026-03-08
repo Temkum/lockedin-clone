@@ -31,6 +31,10 @@ export class TranscriptionService {
         },
       );
 
+      if (!response.data) {
+        throw new Error('No response data from Deepgram');
+      }
+
       const transcript =
         response.data?.results?.channels?.[0]?.alternatives?.[0]?.transcript ??
         '';

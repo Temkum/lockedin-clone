@@ -10,7 +10,8 @@ import {
 import { Server, Socket } from 'socket.io';
 import { Logger } from '@nestjs/common';
 import { AudioService } from './audio.service';
-import { AudioChunk, Session, WsEvent } from '../shared-types/types';
+import type { AudioChunk, Session } from '../shared-types/types';
+import { WsEvent } from '../shared-types/types';
 
 @WebSocketGateway({
   cors: {
